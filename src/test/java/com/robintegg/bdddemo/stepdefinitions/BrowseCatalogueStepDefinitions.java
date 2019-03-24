@@ -23,9 +23,9 @@ public class BrowseCatalogueStepDefinitions {
 	@Steps
 	AddToCatalogue addToCatalogue;
 
-	@Given("there are some kittens available")
-	public void there_are_some_kittens_available() {
-		addToCatalogue.someKittens();
+	@Given("there are some items available in a catalogue")
+	public void there_are_some_items_available_in_a_catalogue() {
+		addToCatalogue.someItems();
 	}
 
 	@When("I browse the catalogue")
@@ -33,9 +33,9 @@ public class BrowseCatalogueStepDefinitions {
 		navigateTo.homePage();
 	}
 
-	@Then("I should see all available kittens")
-	public void i_should_see_all_available_kittens() {
-		assertThat(browse.kittenDescriptions(), hasItems("Sneezy Kitten"));
+	@Then("I should see the all the items")
+	public void i_should_see_the_all_the_items() {
+		assertThat(browse.itemNames(), hasItems("Sneezy Kitten"));
 	}
 
 }

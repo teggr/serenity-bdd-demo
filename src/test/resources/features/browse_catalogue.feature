@@ -1,10 +1,10 @@
 Feature: Browse Catalogue
 
-	In order to find kittens that I want to purchase
+	In order to find things that I want to purchase
 	As a customer
-	I want to be able to browse the available kittens
+	I want to be able to browse the available items in a catalogue
 
-  Scenario: See all kittens
-    Given there are some kittens available
+  Scenario: See all items
+    Given there are some items available in a catalogue
     When I browse the catalogue
-    Then I should see all available kittens
+    Then I should see the all the items

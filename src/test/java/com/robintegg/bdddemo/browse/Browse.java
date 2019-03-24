@@ -10,9 +10,14 @@ import net.thucydides.core.annotations.Step;
 
 public class Browse extends UIInteractionSteps {
 
-	@Step("Get visible kitten names")
-	public List<String> kittenDescriptions() {
+	@Step("Get item names")
+	public List<String> itemNames() {
 		return findAll(CatalogueView.ITEM_NAMES).stream().map(WebElement::getText).collect(Collectors.toList());
+	}
+
+	@Step
+	public void findItem() {
+
 	}
 
 }
