@@ -23,7 +23,7 @@
   
 	    <h1>Basket</h1>
 	    
-	    <th:block th:unless="${basket.empty}">
+	    <th:block th:unless="${empty}">
 	    	<table class="table">
 	    		<thead>
 	    			<tr>
@@ -56,9 +56,10 @@
 				</form>
 			
 		</th:block>
-		<th:block th:if="${basket.empty}">
+		<th:block th:if="${empty}">
 
-			<div class="alert alert-secondary" role="alert">There are no items in your basket!</div>
+			<div class="alert alert-secondary" role="alert">There are no kittens in your basket!</div>
+			<a class="btn btn-primary" th:href="@{/}">Find some kittens</a>
 
 		</th:block>
 		

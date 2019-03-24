@@ -7,3 +7,8 @@ Run SerenityBddDemoApplication
 Supporting containers can be run using
 
 	docker-compose up -d
+
+References:
+
+* https://github.com/serenity-bdd/serenity-cucumber4-starter
+* https://serenity-bdd.github.io/theserenitybook/latest/cucumber.html

@@ -24,7 +24,7 @@
   
   	<div class="container">
   
-	    <h1>Available items</h1>
+	    <h1>Available Kittens</h1>
 	    
 	    <th:block th:unless="${catalogue.empty}">
 			<div class="card-deck">
@@ -33,7 +33,7 @@
 				<div class="card" style="width: 150px;">
 					<img th:src="${item.imageUrl}" class="card-img-top" th:alt="${item.name}" width="150px" height="150px">
 					<div class="card-body">
-						<h5 class="card-title" th:text="${item.name}"></h5>
+						<h5 class="card-title item-name" th:text="${item.name}"></h5>
 						<p class="card-text" th:text="${item.description}"></p>
 					</div>
 					<div class="card-body">

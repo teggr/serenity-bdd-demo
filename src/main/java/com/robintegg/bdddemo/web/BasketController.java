@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.robintegg.bdddemo.basket.Basket;
-import com.robintegg.bdddemo.basket.BasketService;
-import com.robintegg.bdddemo.checkout.CheckoutService;
+import com.robintegg.bdddemo.purchase.Basket;
+import com.robintegg.bdddemo.purchase.CheckoutService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,17 +17,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BasketController {
 
-	private final BasketService basketService;
+	private final Basket basket;
 	private final CheckoutService checkoutService;
 
 	@GetMapping
 	public String get(Model model) {
-		Basket basket = basketService.getBasket();
 		model.addAttribute("basket", basket);
 		if (checkoutService.isCheckoutAvailableForBasket(basket)) {
 			model.addAttribute("checkout", true);
 		}
-		if (!basket.isEmpty()) {
+		if (basket.isEmpty()) {
+			model.addAttribute("empty", true);
+		} else {
 			model.addAttribute("clear", true);
 		}
 		return "basket";
@@ -36,8 +36,8 @@ public class BasketController {
 
 	@PostMapping(params = "remove-basket-item")
 	public String postAddToBasket(@RequestParam("catalogueItemId") String catalogueItemId) {
-		basketService.removeItemByCatalogueItemId(catalogueItemId);
-		if (basketService.getBasket().isEmpty()) {
+		basket.removeItem(catalogueItemId);
+		if (basket.isEmpty()) {
 			return "redirect:/";
 		} else {
 			return "redirect:/basket";
@@ -46,14 +46,14 @@ public class BasketController {
 
 	@PostMapping(params = "clear")
 	public String postClear() {
-		basketService.clear();
+		basket.clear();
 		return "redirect:/";
 	}
 
 	@PostMapping(params = "checkout")
 	public String postCheckout() {
-		checkoutService.checkout(basketService.getBasket());
-		return "redirect:/checkout";
+		checkoutService.checkout(basket);
+		return "redirect:/order";
 	}
 
 }
